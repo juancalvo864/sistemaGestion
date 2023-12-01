@@ -10,6 +10,7 @@
     <?php include('header.php'); ?>
     <main class="body_comentarios">
         <?php
+        session_start();
         $archivo = fopen('mensajes.txt', 'r');
         $tamaño = filesize('mensajes.txt');
         $contenido = fread($archivo,$tamaño);

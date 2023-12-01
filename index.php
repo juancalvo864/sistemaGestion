@@ -1,25 +1,25 @@
-
-    <?php include('header.php'); ?>
-    <main>
-        <section class="container_cargar_art">
-            <h3>Cargar articulo</h3>
-            <form action="cargar_articulos.php" method="post" class="formulario">
-                <input type="text" name="nombre" required placeholder="Nombre">
-                <input type="text" name="codigo" 
-                required placeholder="Codigo">
-                <input type="text" name="imagen" 
-                required placeholder="Imagen">
-                <textarea name="descripcion" id="" cols="30" rows="5"></textarea>
-                <input type="submit" value="Cargar Articulo">
-                <?php 
-                    if(isset($_GET['ok'])){
-                        echo "<h3> Articulo cargado con exito</h3>";
-                    }
-                ?>
+<?php include('header.php'); ?>
+    <main class="main_login">
+        <section class="container_formulario_login">
+            <h3>LOGIN</h3>
+            <form action="login.php" method="post" class="formulario_login">
+                <label for="usuario">Usuario</label>
+                <input type="text" name="usuario" require placeholder="Usuario">
+                <label for="clave">Contraseña</label>
+                <input type="password" name="clave" require placeholder="Ingrese su contraseña">
+                <img src="captcha.php" alt="Captcha" >
+                <input type="text" name="textCaptcha" required placeholder="Ingrese captcha">
+                <input type="submit" value="Ingresar">
             </form>
         </section>
 
+        <?php
+            if(isset($_GET['error'])){
+                echo '<h3>Los datos ingresados son incorrectos</h3>';
+            }
+        ?>
     </main>
     <?php include('footer.php');?>
+    
 </body>
 </html>

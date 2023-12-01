@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +16,14 @@
         </div>    
         <nav>
             <div class="menu_nav">
-                <a href="./index.php">Carga de articulos</a>
+                <a href="./home.php">Carga de articulos</a>
                 <a href="./vista.php">Ver articulos</a>
-                <a href="./comentarios.php">Mensajes</a>
+                <?php if($_SESSION['admin']){
+                    echo '<a href="./comentarios.php">Mensajes</a>';
+                }
+                ;?>
                 <a href="./formulario.php">Contacto</a>
-                <a href="#">salir</a>
+                <a href="./salir.php">salir</a>
             </div>
         </nav>
     </header>  
