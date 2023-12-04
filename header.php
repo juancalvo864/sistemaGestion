@@ -23,6 +23,7 @@
                 if($_SESSION['admin']){
                     echo '<a href="./home.php">Carga de articulos</a>';
                     echo '<a href="./comentarios.php">Mensajes</a>';
+                    echo '<a href="./editar.php">Editar producto</a>';
                 }
                 ;?>
                 <a href="./vista.php">Ver articulos</a>

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
     <?php include('header.php'); ?>
     <main class="main_vista">
         <section class="container_personajes">
@@ -20,6 +13,7 @@
                 <img src="imagenes/<?php echo $mostrar_datos ['imagen']?>" alt="<?php echo $mostrar_datos['nombre']?>">
                 <p><?php echo $mostrar_datos['descripcion']; ?></p>
                 <a href="eliminar.php?id=<?php echo $mostrar_datos['id'];?>">Eliminar</a>
+                <a href="editar.php?id=<?php echo $mostrar_datos['id'];?>">Editar</a>
             </div>
             <?php } ?>
         </section>
