@@ -1,50 +1,37 @@
 <?php
-    include("conexion.php");
     session_start();
+    include("conexion.php");
+
+    if (!isset($_SESSION['admin'])) {
+        header("Location: index.php");
+        exit(); 
+    }
+    
 
     $nombre_art = $_POST['nombre'];
     $codigo_art = $_POST['codigo'];
     $descripcion_art = $_POST['descripcion'];
 
-    $temporal = $_FILES['imagen']['tmp_name'];
-    $nombre = $_FILES['imagen']['name'];
-  
-    //abrimos la foto original
+    $nombre_img = $_FILES['imagen']['name'];
+    $tamanio_img = $_FILES['imagen']['size'];
+    $tipo_img = $_FILES['imagen']['type'];
+    $tmp_img = $_FILES['imagen']['tmp_name'];
 
-    if ($_FILES['imagen']['type'] === 'image/jpeg'){
-        $orginal = imagecreatefromjpeg($temporal);
-    }elseif($_FILES['imagen']['type'] === 'image/png'){
-        $orginal = imagecreatefrompng($temporal);
+    $destino = 'imagenes/'.$nombre_img;
+
+    if(($tipo_img != 'image/jpeg' && $tipo_img != 'image/jpg' && $tipo_img != 'image/png' && $tipo_img != 'image/gif') or $tamanio_img > 300000 ){
+        header("Location: CARGAR.PHP?error");
     }else{
-        die('no se pudo generar la imagen');
+        move_uploaded_file($tmp_img,$destino);
+
+        mysqli_query($conexion_db, "INSERT INTO articulos VALUES (DEFAULT, '$nombre_art','$codigo_art','$nombre_img','$descripcion_art')" );
+
+        mysqli_close($conexion_db);
+
+        header("Location:home.php?ok");
     }
 
-    //Obtener las dimensiones originales de la imagen (alto,ancho).
-
-    $ancho_original = imagesx($orginal);
-    $alto_original = imagesy($orginal);
-
-    // Creamos lienzo vacio
-
-    $ancho_nuevo = 700;
-    $alto_nuevo = round($ancho_nuevo * $alto_original / $ancho_original);
-
-    //Se crea la nueva imagen
-
-    $copia = imagecreatetruecolor($alto_nuevo,$ancho_nuevo);
-
-    //Redimensionamos la imagen oriinal
-
-    imagecopyresampled($copia,$orginal,0,0,0,0,$ancho_nuevo,$alto_nuevo,$ancho_original,$alto_original);
-
-    //Exportamos y guardamos la imagen
-
-    imagejpeg($copia,"imagenes/".$nombre,100);
+ 
 
 
-    mysqli_query($conexion_db, "INSERT INTO articulos VALUES (DEFAULT, '$nombre_art','$codigo_art','$nombre','$descripcion_art')" );
-
-    mysqli_close($conexion_db);
-
-    header("Location:index.php?ok");
 ?>

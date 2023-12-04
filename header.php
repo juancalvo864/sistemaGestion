@@ -16,12 +16,16 @@
         </div>    
         <nav>
             <div class="menu_nav">
-                <a href="./home.php">Carga de articulos</a>
-                <a href="./vista.php">Ver articulos</a>
-                <?php if($_SESSION['admin']){
+                <?php 
+                if(!isset($_SESSION['admin'])){
+                    echo '<a href="./index.php">Login</a>';
+                }
+                if($_SESSION['admin']){
+                    echo '<a href="./home.php">Carga de articulos</a>';
                     echo '<a href="./comentarios.php">Mensajes</a>';
                 }
                 ;?>
+                <a href="./vista.php">Ver articulos</a>
                 <a href="./formulario.php">Contacto</a>
                 <a href="./salir.php">salir</a>
             </div>
