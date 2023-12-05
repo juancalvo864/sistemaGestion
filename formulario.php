@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
-    <title>Contacto</title>
-</head>
-<body >
-    <?php include('header.php'); ?>
+<?php 
+    session_start();
+   
+    include('header.php')
+; ?>
     <main class="body_contact">
         <h1>Formulario de contacto</h1>
         <form action="formulario1.php" method="post" class="form_contact">

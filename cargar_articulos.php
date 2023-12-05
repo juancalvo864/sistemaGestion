@@ -20,7 +20,7 @@
     $destino = 'imagenes/'.$nombre_img;
 
     if(($tipo_img != 'image/jpeg' && $tipo_img != 'image/jpg' && $tipo_img != 'image/png' && $tipo_img != 'image/gif') or $tamanio_img > 300000 ){
-        header("Location: CARGAR.PHP?error");
+        header("Location:home.php?error");
     }else{
         move_uploaded_file($tmp_img,$destino);
 

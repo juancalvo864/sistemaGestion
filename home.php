@@ -1,5 +1,13 @@
+<?php 
+    session_start(); 
 
-<?php include('header.php');?>
+    if (!isset($_SESSION['admin'])) {
+        header("Location: index.php");
+        exit(); 
+    }
+    include('header.php')
+;?>
+
     <main>
         <section class="container_cargar_art">
             <h3>Cargar articulo</h3>

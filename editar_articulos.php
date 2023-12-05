@@ -1,5 +1,6 @@
 <?php 
     session_start();
+  
     include("conexion.php");
 
     $prod_seleccionado = $_POST['producto'];
@@ -25,23 +26,20 @@
             if (!empty($nombre_nuevo)) {
                 $consulta_actualizacion .= "nombre = '$nombre_nuevo', ";
             }
-
             if (!empty($codigo_nuevo)) {
                 $consulta_actualizacion .= "codigo = '$codigo_nuevo', ";
             }
-
             if (!empty($nombre_img)) {
                 $consulta_actualizacion .= "imagen = '$nombre_img', ";
             }
-
             if (!empty($descripcion_nuevo)) {
                 $consulta_actualizacion .= "descripcion = '$descripcion_nuevo', ";
             }
 
-            // Eliminar la coma extra al final de la consulta
+            // Elimino la coma extra al final de la consulta
             $consulta_actualizacion = rtrim($consulta_actualizacion, ", ");
 
-            // Agregar la condición WHERE
+            // Concateno la condición WHERE a la query.
             $consulta_actualizacion .= " WHERE id = '$prod_seleccionado'";
 
             mysqli_query($conexion_db, $consulta_actualizacion);
@@ -74,6 +72,6 @@
             mysqli_close($conexion_db);
 
 
-        header("Location:editar.php?ok");
+            header("Location:editar.php?ok");
     }    
 

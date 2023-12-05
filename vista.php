@@ -1,10 +1,12 @@
-
-    <?php include('header.php'); ?>
+<?php 
+    session_start();
+    
+    include('header.php'); 
+?>
     <main class="main_vista">
         <section class="container_personajes">
             <?php include('conexion.php'); 
             $consulta_db = mysqli_query($conexion_db, "SELECT * FROM articulos");
-
             while($mostrar_datos = mysqli_fetch_assoc($consulta_db)){
             ?>
             <div class="box_articulo">
